@@ -32,7 +32,48 @@ Get-ADGroupMember -Identity "Domain Admins" |
 Where-Object {$_.Name -in "DAIldar","DAIgor"} |
 Select-Object Name, SamAccountName
 
+==================================
+Get-ADOrganizationalUnit -Filter * |
+Where-Object {$_.Name -in @(
+    "Accounts",
+    "Management",
+    "IT Department",
+    "Legal Department",
+    "Finance Department",
+    "HR Department",
+    "Administrators"
+)} |
+Sort-Object Name |
+Select-Object Name, DistinguishedName
 
+=============================================
+Get-ADUser -SearchBase "OU=Accounts,DC=RL,DC=bsc" -Filter * `
+-Properties UserPrincipalName |
+Sort-Object Name |
+Select-Object Name, UserPrincipalName, Enabled
+
+=================================================
+
+$Groups = @(
+    "Management",
+    "IT Department",
+    "Legal Department",
+    "Finance Department",
+    "HR Department"
+)
+
+foreach ($Group in $Groups) {
+    Write-Host "`n$Group" -ForegroundColor Yellow
+    Get-ADGroupMember -Identity $Group |
+    Select-Object -ExpandProperty Name
+}
+
+
+
+
+=============================
+dsquery user -limit 0
+dsquery user -name "*"
 
 
 
