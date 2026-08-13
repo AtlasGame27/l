@@ -2,7 +2,9 @@ Get-ADUser -SearchBase "OU=Accounts,DC=RL,DC=bsc" -Filter * |
 Select-Object Name, SamAccountName, Enabled
  
  
- 
+ Get-ADGroup -SearchBase "OU=Accounts,DC=RL,DC=bsc" -Filter * |
+Sort-Object Name |
+Select-Object Name, GroupCategory, GroupScope
  
  
  # ==========================================
