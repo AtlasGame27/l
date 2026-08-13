@@ -5,6 +5,25 @@ Select-Object Name, SamAccountName, Enabled
  Get-ADGroup -SearchBase "OU=Accounts,DC=RL,DC=bsc" -Filter * |
 Sort-Object Name |
 Select-Object Name, GroupCategory, GroupScope
+
+
+
+
+$Groups = @(
+    "Management-sec",
+    "IT Department-sec",
+    "Legal Department-sec",
+    "Finance Department-sec",
+    "HR Department-sec"
+)
+
+foreach ($Group in $Groups) {
+    Write-Host "`n$Group" -ForegroundColor Yellow
+    Get-ADGroupMember -Identity $Group | Select-Object -ExpandProperty Name
+}
+
+
+
  
  
  # ==========================================
