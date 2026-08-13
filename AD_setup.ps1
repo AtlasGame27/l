@@ -24,6 +24,18 @@ foreach ($Group in $Groups) {
 
 
 
+Get-ADUser -SearchBase "OU=Administrators,DC=RL,DC=bsc" -Filter * |
+Select-Object Name, SamAccountName, Enabled
+
+
+Get-ADGroupMember -Identity "Domain Admins" |
+Where-Object {$_.Name -in "DAIldar","DAIgor"} |
+Select-Object Name, SamAccountName
+
+
+
+
+
  
  
  # ==========================================
