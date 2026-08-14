@@ -1,3 +1,10 @@
+Get-SmbServerConfiguration |
+Select-Object EnableSecuritySignature, RequireSecuritySignature
+
+
+
+
+
 Get-ADUser -SearchBase "OU=Accounts,DC=RL,DC=bsc" -Filter * |
 Select-Object Name, SamAccountName, Enabled
  
